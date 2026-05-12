@@ -57,10 +57,16 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
   text-align: center;
   padding: 0 2rem;
+}
+
+.landing-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .landing-mark {
@@ -121,10 +127,7 @@ body::before {
 }
 
 .scroll-hint {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  padding-bottom: 2.5rem;
   font-family: var(--mono);
   font-size: 8px;
   font-weight: 300;
@@ -137,6 +140,7 @@ body::before {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  padding-left: 0.18em;
 }
 
 .scroll-hint::after {
@@ -288,6 +292,7 @@ body::before {
   margin: 3.5rem 0 0;
   padding: 2.5rem 0;
   border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .manifesto-closing-quote blockquote {
@@ -301,13 +306,11 @@ body::before {
 }
 
 .manifesto-closing-quote cite {
-  font-family: var(--mono);
-  font-size: 9px;
+  font-family: var(--sans);
+  font-size: clamp(13px, 1.4vw, 15px);
   font-weight: 300;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.22);
-  font-style: normal;
+  font-style: italic;
+  color: rgba(255,255,255,0.42);
 }
 
 /* ─── CLOSING / CONTACT ─── */
@@ -346,19 +349,18 @@ body::before {
 .action-secondary {
   font-family: var(--mono);
   font-size: 10px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.38);
+  color: var(--white);
   text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.55);
   padding-bottom: 3px;
-  transition: color 0.2s, border-color 0.2s;
+  transition: border-color 0.2s;
 }
 
 .action-secondary:hover {
-  color: var(--white);
-  border-color: rgba(255,255,255,0.4);
+  border-color: var(--white);
 }
 
 /* ─── SCROLL REVEAL ─── */
@@ -395,18 +397,20 @@ body::before {
 
 <!-- ─── LANDING ─── -->
 <section id="landing">
-  <div class="landing-mark">
-    <svg width="120" height="12" viewBox="0 0 120 12" fill="none">
-      <rect x="0" y="0" width="120" height="12" fill="#ffffff"/>
-    </svg>
-  </div>
+  <div class="landing-inner">
+    <div class="landing-mark">
+      <svg width="120" height="12" viewBox="0 0 120 12" fill="none">
+        <rect x="0" y="0" width="120" height="12" fill="#ffffff"/>
+      </svg>
+    </div>
 
-  <p class="landing-wordmark">Threshold</p>
+    <p class="landing-wordmark">Threshold</p>
 
-  <div class="landing-cta">
-    <button class="cta-link" onclick="document.getElementById('manifesto').scrollIntoView({behavior:'smooth'})">
-      Manifesto
-    </button>
+    <div class="landing-cta">
+      <button class="cta-link" onclick="document.getElementById('manifesto').scrollIntoView({behavior:'smooth'})">
+        Manifesto
+      </button>
+    </div>
   </div>
 
   <div class="scroll-hint">Scroll</div>
@@ -480,7 +484,7 @@ body::before {
   <p class="manifesto-body reveal">If this is addressed to you, take the step.</p>
 
   <div class="manifesto-apply reveal">
-    <a class="action-primary" href="https://forms.gle/23GeQ3Ut4H6RCVTy9" target="_blank" rel="noopener">Apply — Cohort I</a>
+    <a class="action-primary" href="https://forms.gle/23GeQ3Ut4H6RCVTy9" target="_blank" rel="noopener">Apply — Cohort 0.5</a>
   </div>
 
   <div class="manifesto-closing-quote reveal">
