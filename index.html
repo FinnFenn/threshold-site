@@ -461,7 +461,7 @@ body::before {
   .manifesto-quotes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
+    column-gap: 3rem;
     border-left: none;
     padding-left: 0;
   }
@@ -469,9 +469,9 @@ body::before {
     font-size: 15px;
     border-top: 1px solid rgba(255,255,255,0.15);
     padding-top: 1.5rem;
-    padding-right: 2rem;
+    padding-right: 0;
+    margin-bottom: 0;
   }
-  .manifesto-quote:last-child { padding-right: 0; }
   .manifesto-triple {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
