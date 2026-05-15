@@ -226,6 +226,27 @@ body::before {
   font-size: clamp(14px, 1.5vw, 16px);
   line-height: 1.65;
   color: rgba(255,255,255,0.42);
+  margin-bottom: 1.5rem;
+}
+
+.manifesto-quote:last-child {
+  margin-bottom: 0;
+}
+
+.quote-text {
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.quote-attr {
+  display: block;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
 }
 
 /* Emphasis / statements */
@@ -285,6 +306,10 @@ body::before {
 /* Apply block before Jung quote */
 .manifesto-apply {
   margin: 3rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
 }
 
 /* Closing quote */
@@ -306,11 +331,15 @@ body::before {
 }
 
 .manifesto-closing-quote cite {
-  font-family: var(--sans);
-  font-size: clamp(13px, 1.4vw, 15px);
+  font-family: var(--mono);
+  font-size: 8px;
   font-weight: 300;
-  font-style: italic;
-  color: rgba(255,255,255,0.42);
+  font-style: normal;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  display: block;
+  margin-top: 0.6rem;
 }
 
 /* ─── CLOSING / CONTACT ─── */
@@ -391,6 +420,81 @@ body::before {
     padding-left: 1rem;
   }
 }
+
+/* ─── DESKTOP ─── */
+@media (min-width: 1024px) {
+
+  /* Content column */
+  #manifesto {
+    max-width: 700px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 12rem;
+  }
+  #closing {
+    max-width: 700px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 6rem;
+    padding-bottom: 10rem;
+  }
+
+  /* Spacing scale — 2rem / 4rem / 6rem */
+  .manifesto-rule    { margin-bottom: 4rem; }
+  .manifesto-meta    { margin-bottom: 4rem; }
+  .manifesto-body    { font-size: 19px; margin-bottom: 2rem; }
+  .manifesto-statement { font-size: 21px; margin: 4rem 0; }
+  .manifesto-reject  { font-size: 28px; margin: 4rem 0; }
+  .manifesto-quotes  { margin: 4rem 0; }
+  .manifesto-triple  { margin-bottom: 4rem; }
+  .manifesto-offer-label { margin-top: 6rem; margin-bottom: 2rem; }
+  .manifesto-closing-quote { margin-top: 5rem; padding: 3rem 0; }
+  #manifesto { padding-bottom: 8rem; }
+
+  /* Type sizes */
+  .manifesto-opener  { font-size: 30px; }
+  .manifesto-triple-line { font-size: 17px; }
+  .manifesto-closing-quote blockquote { font-size: 18px; line-height: 1.7; margin-bottom: 0.4rem; }
+  .manifesto-closing-quote cite { font-size: 8px; }
+
+  /* Horizontal grids */
+  .manifesto-quotes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border-left: none;
+    padding-left: 0;
+  }
+  .manifesto-quote {
+    font-size: 15px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 1.5rem;
+    padding-right: 2rem;
+  }
+  .manifesto-quote:last-child { padding-right: 0; }
+  .manifesto-triple {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  /* Logo mark */
+  .landing-inner { padding-top: 6rem; }
+  .landing-mark  { margin-bottom: 5rem; }
+  .landing-mark svg {
+    width: min(700px, calc(100vw - 80px));
+    height: 12px;
+  }
+
+  /* Apply CTA — centred inline, underline under text only */
+  .manifesto-apply {
+    margin-top: 6rem;
+    padding-top: 5rem;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    align-items: center;
+  }
+
+}
 </style>
 </head>
 <body>
@@ -430,9 +534,18 @@ body::before {
   </p>
 
   <div class="manifesto-quotes reveal">
-    <p class="manifesto-quote">"Existence precedes essence." — Sartre</p>
-    <p class="manifesto-quote">"Life is motion." — Simmel</p>
-    <p class="manifesto-quote">"Know thyself." — Delphic Maxim</p>
+    <div class="manifesto-quote">
+      <span class="quote-text">"Existence precedes essence."</span>
+      <span class="quote-attr">Sartre</span>
+    </div>
+    <div class="manifesto-quote">
+      <span class="quote-text">"Life is motion."</span>
+      <span class="quote-attr">Simmel</span>
+    </div>
+    <div class="manifesto-quote">
+      <span class="quote-text">"Know thyself."</span>
+      <span class="quote-attr">Delphic Maxim</span>
+    </div>
   </div>
 
   <p class="manifesto-body reveal">
@@ -481,24 +594,19 @@ body::before {
 
   <p class="manifesto-statement reveal">All free. No equity taken. No programme fees.</p>
 
-  <p class="manifesto-body reveal">If this is addressed to you, take the step.</p>
+  <p class="manifesto-body reveal">If this is addressed to you and you need to know more. Take the first step.</p>
 
   <div class="manifesto-apply reveal">
-    <a class="action-primary" href="https://forms.gle/23GeQ3Ut4H6RCVTy9" target="_blank" rel="noopener">Apply — Cohort 0.5</a>
+    <a class="action-primary" href="https://forms.gle/23GeQ3Ut4H6RCVTy9" target="_blank" rel="noopener">Declare Interest — Cohort 0.5</a>
+    <a class="action-secondary" href="mailto:jack@thresholdresidency.org,jamie@thresholdresidency.org">Contact</a>
   </div>
 
   <div class="manifesto-closing-quote reveal">
     <blockquote>"Until you make the unconscious conscious, it will direct your life and you will call it fate."</blockquote>
-    <cite>— Jung</cite>
+    <cite>Jung</cite>
   </div>
 </section>
 
-<!-- ─── CLOSING / CONTACT ─── -->
-<section id="closing">
-  <div class="closing-actions reveal">
-    <a class="action-secondary" href="mailto:jack@thresholdresidency.org,jamie@thresholdresidency.org">Contact</a>
-  </div>
-</section>
 
 <script>
   // Scroll reveal
