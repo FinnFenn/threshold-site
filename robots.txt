@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://thresholdresidency.co.uk/sitemap.xml
