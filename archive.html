@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive — Threshold</title>
+<meta name="description" content="Archive of Threshold residency events.">
+<link rel="stylesheet" href="style.css">
+<style>
+.archive-back {
+  padding: 24px var(--gutter);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.archive-back a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-meta);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+
+.archive-back a:hover { color: var(--fg); }
+
+.archive-main {
+  max-width: var(--max-page);
+  margin: 0 auto;
+  padding: 4rem var(--gutter) 8rem;
+  box-sizing: border-box;
+}
+
+.archive-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 3rem;
+}
+
+.archive-label .section-marker {
+  color: var(--fg);
+  margin-right: 10px;
+}
+
+/* ─── Gallery grid ─── */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+/* ─── Frame ─── */
+.archive-frame {
+  border: 2px solid rgba(180, 150, 100, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.archive-frame.filled {
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.archive-frame.filled:hover {
+  border-color: rgba(180, 150, 100, 0.7);
+}
+
+.archive-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Empty frames dimmed */
+.archive-frame.empty {
+  border-color: rgba(180, 150, 100, 0.15);
+}
+
+.archive-frame.empty svg {
+  opacity: 0.08;
+}
+
+/* ─── Overlay detail ─── */
+.archive-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(8,8,8,0.95);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  cursor: pointer;
+}
+
+.archive-overlay.open {
+  display: block;
+}
+
+.archive-overlay-inner {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5rem var(--gutter) 4rem;
+  cursor: default;
+}
+
+.archive-overlay-img {
+  width: 100%;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.archive-overlay-close {
+  position: absolute;
+  top: 24px;
+  right: var(--gutter);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-meta);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.archive-overlay-close:hover { color: var(--fg); }
+
+.archive-overlay-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.3;
+  color: var(--fg);
+  margin-bottom: 0.75rem;
+}
+
+.archive-overlay-artist {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 1.5rem;
+}
+
+.archive-overlay-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.58);
+  margin-bottom: 1.5rem;
+}
+
+.archive-overlay-summary {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.88);
+}
+
+.archive-overlay-summary p {
+  margin-bottom: 1.2em;
+}
+
+.archive-overlay-summary p:last-child {
+  margin-bottom: 0;
+}
+
+.redacted {
+  background: rgba(255,255,255,0.70);
+  color: transparent;
+  border-radius: 1px;
+  user-select: none;
+  display: inline;
+}
+</style>
+</head>
+<body>
+
+<nav class="archive-back">
+  <a href="/">Threshold</a>
+</nav>
+
+<main class="archive-main">
+  <p class="archive-label"><span class="section-marker">&sect;</span> Archive</p>
+
+  <div class="archive-grid">
+
+    <div class="archive-frame filled" onclick="openArchive(this)" data-title="'The 1755 Earthquake in Portugal'" data-artist="C.Phillips 2026" data-meta="Dinner I : Call to action [PARTIALLY REDACTED]" data-img="dinner-painting.png">
+      <img src="dinner-painting.png" alt="Live painting of the first Threshold dinner by Connor Phillips, 2026">
+      <div class="archive-content" hidden>
+        <p><span class="redacted">In 1755, the Great Lisbon earthquake</span> reduced this gold adorned city to rubble. <span class="redacted">Wondering at this act of seemingly divine destruction the seismic ripples were not just material but philosophical and political. Most importantly they inspired the great philosopher, Immanuel</span> Kant's idea of the sublime. <span class="redacted">A feeling of being</span> dwarfed by immense power, <span class="redacted">a power that is awe inspiring, that is satisfying to see unfold, but one that inspires a deep feeling of dread in the pit of one's stomach.</span></p>
+        <p><span class="redacted">To quote Kant himself the sublime is "awe-inspiring greatness in extent or degrees which invites approach" which invites a competitive urge "(in order to measure our powers against it)"</span></p>
+        <p><span class="redacted">The notion bifurcates into the mathematical sublime; that which overwhelms us with its infinity a starry universe, seemingly impossible to understand in its totality; or the dynamical sublime- might itself, the avalanche, the tsunami, the earthquake.</span> Kant argues that in going toe to toe with the universe; our efforts to grasp or emulate the sublime object "awakens in us a feeling of our own greatness and power". People find inspiration in the sublime.</p>
+        <p><span class="redacted">But in the contemporary moment, where is the sublime? Where can we find it?</span></p>
+        <p><span class="redacted">Arguably in the physical world- the cosmos, biology, scientific fact itself. But also in the social world- ideas of progress, free will, history, intelligence.</span></p>
+        <p><span class="redacted">What is most interesting, however, is that you can see this sublime object, the notion of it, or the subconscious psychological reaction to it throughout the tech field.</span></p>
+        <p>One reaction is that nature itself, its might, its infinity is something to be contended with, <span class="redacted">to be found and dominated. One that is best summarised by</span> Andreessen's <span class="redacted">techno optimist manifesto. He writes:</span></p>
+        <p><span class="redacted">"We believe that we are, have been, and will always be the masters of technology, not mastered by technology. We are not victims, we are conquerors. We believe in nature, but we also believe in overcoming nature. We are not primitives, cowering in fear of the lightning bold. We are the apex predator; the lightning works for us."</span></p>
+        <p><span class="redacted">But perhaps more interestingly,</span> the sublime and technology clearly intertwine in a more experiential sense. <span class="redacted">Technology itself broadens the horizon of human experience. Technology provides a new mode of accessing new sublime feelings- the stars, the moon, the pale blue dot. Here I turn to Bezos' spaceflight. Amid Katy Perry, the champagne was one man Shatner. Returning to earth it was clear that he had experienced the sublime, he spoke of the earth to CNN saying his experience "has to do with the enormity and the quickness and the suddenness of life and death" and he told CNN he couldn't spot crying because he "was grieving for the destruction of the Earth".</span></p>
+        <p>While Kant marvelled at the magnitude of the Earth, Shatner's experience was inverted by technology. <span class="redacted">Instead of seeing the dynamical power of an earthquake over man, he saw the pale blue dot in the vastness of space.</span></p>
+        <p><span class="redacted">But most importantly and what is most pressing is one final interaction of the sublime and technology.</span> We can now create the sublime. <span class="redacted">These moments of creation come from a complex hybrid, a cyborg assemblage of human emotions, fear, geopolitical competition, technical brilliance, scientific discovery.</span> Here is Oppenheimer's turn to Vedic, when he saw the mushroom cloud billowing on the horizon he uttered the famous phrase "I am become death, the destroyer of worlds". He saw, he created, he feared the sublime.</p>
+        <p><span class="redacted">So, to circle back, the sublime is an awe-inspiring greatness which is unbelievably satisfying to see, but at the same time it fills you with dread. It's almost the philosophically pretentious version of spiderman's "with great power comes great responsibility".</span></p>
+        <p>What a time to think about inspiration! What a time to think about technology, the sublime, nature, the infinite, might itself. To reflect on fear, inspiration, greatness.</p>
+        <p>We have been given the ultimate Promethean promise, <span class="redacted">Artificial Intelligence, AGI, ASI, whatever you want to call it. This is promised to us in increasingly eschatological, end of days, words.</span></p>
+        <p><span class="redacted">I have many questions.</span></p>
+        <p>Will we create one final sublime entity, god in a data centre, and exist under these 'machines of loving grace' as Dario says. <span class="redacted">What will that look like? What will that feel like? In outsourcing all of our reasoning and rationality will everything be sublime, will we be highly irrational, emotional, spiritual beings? Will life feel like an early memory?</span></p>
+        <p><span class="redacted">Or will we take Demis' interpretation- we are creating a tool.</span> Will this tool enable us to experience more of the sublime, the stars, to live infinite lives?</p>
+        <p><span class="redacted">With nature itself brought to heel, where will the sublime go? You remember its capacity to inspire.</span> What will our grandchildren's children fear, fight, or be inspired by?</p>
+        <p><span class="redacted">I ask these questions because</span> Threshold has a fundamental polymathic bet. <span class="redacted">The natural philosopher builder. Those who can hold together in one hand, the existential, the technical, the moral, and the brutal pace of being a tech CEO. We are fundamentally dissatisfied with SF's capacity to produce these people. We see the opportunity of the UK- in its heritage of polymaths- from Newton to Lovelace to Hassabis- to be the centre of this new wave.</span></p>
+        <p><span class="redacted">As you can probably tell,</span> Threshold has quite an existential spine running through it. Why not?</p>
+        <p><span class="redacted">Many of you in this room have encountered the notion that this is the most important century in human history. Do you ever ask yourself why you are here? What conditions brought you here? Pure luck, yes, free will, maybe. But does this notion of luck, coincidence, circulate in your brain and fill you with a sense of something bigger.</span> We are the generation of humans who are going to face the greatest crises, we are the generation of humans who will sit right on that knife edge, we are the generation of humans that will either be custodians of humanity's end, or of our claim on infinity.</p>
+        <p><span class="redacted">You are all scientists, builders, operators in or around this tech space.</span> We know that the tech startup is the fastest and most scalar way to influence the world. <span class="redacted">You are building those right now. In this century.</span> Are you ready for that responsibility?... Are you creating something that will stand the test of time?... Are you creating something that should?... Is your intrinsic purpose deeply aligned with what you are building?... I will leave you with those questions. <span class="redacted">But</span> I would like to, <span class="redacted">in honour of this being the first step for us at Threshold, to</span> raise a toast. If you would all join me in repeating-</p>
+        <p><span class="redacted">"To building something that deserves to be built"</span></p>
+      </div>
+    </div>
+
+    <div class="archive-frame empty"><img src="placeholder-painting.png" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
+    <div class="archive-frame empty"><img src="placeholder-painting.png" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
+    <div class="archive-frame empty"><img src="placeholder-painting.png" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
+    <div class="archive-frame empty"><img src="placeholder-painting.png" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
+    <div class="archive-frame empty"><img src="placeholder-painting.png" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
+    <div class="archive-frame empty"><img src="placeholder-painting.png" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
+    <div class="archive-frame empty"><img src="placeholder-painting.png" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
+    <div class="archive-frame empty"><img src="placeholder-painting.png" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
+
+  </div>
+</main>
+
+<!-- ─── Overlay ─── -->
+<div class="archive-overlay" id="archiveOverlay" onclick="if(event.target===this)closeArchive()">
+  <button class="archive-overlay-close" onclick="closeArchive()">Close</button>
+  <div class="archive-overlay-inner">
+    <img class="archive-overlay-img" id="overlayImg" src="" alt="">
+    <h2 class="archive-overlay-title" id="overlayTitle"></h2>
+    <p class="archive-overlay-artist" id="overlayArtist"></p>
+    <p class="archive-overlay-meta" id="overlayMeta"></p>
+    <p class="archive-overlay-summary" id="overlaySummary"></p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-rule"></div>
+  <div class="footer-inner">
+    <span class="footer-copy">Threshold</span>
+    <a href="mailto:jack@thresholdresidency.org" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+<script>
+var scrollPos = 0;
+
+function openArchive(el) {
+  document.getElementById('overlayImg').src = el.dataset.img;
+  document.getElementById('overlayImg').alt = el.dataset.title;
+  document.getElementById('overlayTitle').textContent = el.dataset.title;
+  document.getElementById('overlayArtist').textContent = el.dataset.artist || '';
+  document.getElementById('overlayMeta').textContent = el.dataset.meta;
+  var content = el.querySelector('.archive-content');
+  document.getElementById('overlaySummary').innerHTML = content ? content.innerHTML : '';
+  document.getElementById('archiveOverlay').classList.add('open');
+
+  scrollPos = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + scrollPos + 'px';
+  document.body.style.width = '100%';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArchive() {
+  document.getElementById('archiveOverlay').classList.remove('open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  document.body.style.overflow = '';
+  window.scrollTo(0, scrollPos);
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeArchive();
+});
+</script>
+
+</body>
+</html>

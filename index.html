@@ -20,55 +20,20 @@
 }
 </script>
 <meta name="description" content="Threshold. The residential institution for the most original inventors before they are founders.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ─── Home nav (right-aligned, no mark) ─── */
+.home-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 24px var(--gutter);
+  width: 100%;
 }
 
-:root {
-  --black: #080808;
-  --white: #ffffff;
-  --dim:   rgba(255,255,255,0.38);
-  --faint: rgba(255,255,255,0.12);
-  --sans:  'Cormorant Garamond', serif;
-  --mono:  'IBM Plex Mono', monospace;
-}
-
-html {
-  background: var(--black);
-  color: var(--white);
-  font-family: var(--sans);
-  -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100vh;
-}
-
-/* ─── GRAIN ─── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
-  pointer-events: none;
-  z-index: 1000;
-  opacity: 0.55;
-  mix-blend-mode: overlay;
-}
-
-/* ─── LANDING ─── */
+/* ─── Landing (matches live site) ─── */
 #landing {
-  height: 100vh;
+  height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,11 +88,11 @@ body::before {
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--fg);
   text-decoration: none;
   border-bottom: 1px solid rgba(255,255,255,0.4);
   padding-bottom: 3px;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.2s;
   cursor: pointer;
   background: none;
   border-top: none;
@@ -136,10 +101,7 @@ body::before {
   outline: none;
 }
 
-.cta-link:hover {
-  border-color: var(--white);
-  color: var(--white);
-}
+.cta-link:hover { border-bottom-color: var(--fg); }
 
 .scroll-hint {
   padding-bottom: 2.5rem;
@@ -171,7 +133,21 @@ body::before {
   50% { opacity: 1; transform: scaleY(1.2); }
 }
 
-/* ─── MANIFESTO SECTION ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ─── Epigraph band ─── */
+.epigraph-band {
+  border-top: 1px solid var(--fg-faint);
+  border-bottom: 1px solid var(--fg-faint);
+  padding: clamp(48px, 6vw, 80px) var(--gutter);
+  max-width: var(--max-page);
+  margin: 0 auto;
+}
+
+/* ─── Manifesto (Cormorant, matching live site) ─── */
 #manifesto {
   max-width: 620px;
   margin: 0 auto;
@@ -188,34 +164,30 @@ body::before {
   transition: transform 1.1s cubic-bezier(0.16,1,0.3,1);
 }
 
-.manifesto-rule.visible {
-  transform: scaleX(1);
-}
+.manifesto-rule.visible { transform: scaleX(1); }
 
 .manifesto-meta {
   font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 300;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.68);
   margin-bottom: 4rem;
 }
 
-/* Opening statement */
 .manifesto-opener {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-weight: 300;
   font-size: clamp(22px, 3.5vw, 34px);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--white);
+  color: var(--fg);
   margin-bottom: 3rem;
 }
 
-/* Body paragraphs */
 .manifesto-body {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-weight: 300;
   font-size: clamp(15px, 1.6vw, 17px);
   line-height: 1.85;
@@ -223,11 +195,8 @@ body::before {
   margin-bottom: 1.8em;
 }
 
-.manifesto-body:last-of-type {
-  margin-bottom: 0;
-}
+.manifesto-body:last-of-type { margin-bottom: 0; }
 
-/* Philosophical quotes */
 .manifesto-quotes {
   margin: 3rem 0;
   padding-left: 1.5rem;
@@ -235,7 +204,7 @@ body::before {
 }
 
 .manifesto-quote {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-weight: 300;
   font-style: italic;
   font-size: clamp(14px, 1.5vw, 16px);
@@ -244,14 +213,9 @@ body::before {
   margin-bottom: 1.5rem;
 }
 
-.manifesto-quote:last-child {
-  margin-bottom: 0;
-}
+.manifesto-quote:last-child { margin-bottom: 0; }
 
-.quote-text {
-  display: block;
-  margin-bottom: 0.6rem;
-}
+.quote-text { display: block; margin-bottom: 0.6rem; }
 
 .quote-attr {
   display: block;
@@ -264,26 +228,23 @@ body::before {
   color: rgba(255,255,255,0.25);
 }
 
-/* Emphasis / statements */
 .manifesto-statement {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-weight: 600;
   font-style: italic;
   font-size: clamp(16px, 2vw, 20px);
   line-height: 1.4;
-  color: var(--white);
+  color: var(--fg);
   margin: 2.5rem 0;
 }
 
-/* Rejection + triple statements */
 .manifesto-reject {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-weight: 600;
-  font-style: normal;
   font-size: clamp(18px, 2.5vw, 26px);
   line-height: 1.2;
   letter-spacing: -0.01em;
-  color: var(--white);
+  color: var(--fg);
   margin: 0.5rem 0 4rem;
 }
 
@@ -295,7 +256,7 @@ body::before {
 }
 
 .manifesto-triple-line {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-weight: 300;
   font-size: clamp(14px, 1.6vw, 17px);
   line-height: 1.7;
@@ -304,21 +265,19 @@ body::before {
 
 .manifesto-triple-line strong {
   font-weight: 600;
-  color: var(--white);
+  color: var(--fg);
 }
 
-/* Offer section */
 .manifesto-offer-label {
   font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 300;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.68);
   margin: 4rem 0 1.5rem;
 }
 
-/* Apply block before Jung quote */
 .manifesto-apply {
   margin: 3rem 0 0;
   display: flex;
@@ -327,7 +286,6 @@ body::before {
   gap: 1.25rem;
 }
 
-/* Closing quote */
 .manifesto-closing-quote {
   margin: 3.5rem 0 0;
   padding: 2.5rem 0;
@@ -336,7 +294,7 @@ body::before {
 }
 
 .manifesto-closing-quote blockquote {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-weight: 300;
   font-style: italic;
   font-size: clamp(15px, 1.8vw, 18px);
@@ -357,89 +315,52 @@ body::before {
   margin-top: 0.6rem;
 }
 
-/* ─── CLOSING / CONTACT ─── */
+/* ─── Divider ─── */
+.manifesto-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.14);
+  margin: 0 0 4rem;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.2s;
+}
+
+.manifesto-divider.visible { transform: scaleX(1); }
+
+/* ─── Manifesto CTA ─── */
+.manifesto-cta {
+  margin: 2.5rem 0 0;
+}
+
+/* ─── Closing ─── */
 #closing {
   max-width: 620px;
   margin: 0 auto;
   padding: 3.5rem 2.5rem 6rem;
-  border-top: none;
 }
 
-.closing-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-.action-primary {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--white);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.55);
-  padding-bottom: 3px;
-  transition: border-color 0.2s;
-}
-
-.action-primary:hover {
-  border-color: var(--white);
-}
-
+.action-primary,
 .action-secondary {
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--fg);
   text-decoration: none;
   border-bottom: 1px solid rgba(255,255,255,0.55);
   padding-bottom: 3px;
   transition: border-color 0.2s;
 }
 
+.action-primary:hover,
 .action-secondary:hover {
-  border-color: var(--white);
+  border-color: var(--fg);
 }
 
-/* ─── SCROLL REVEAL ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 600px) {
-  #manifesto, #closing {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  .manifesto-quotes {
-    padding-left: 1rem;
-  }
-}
-
-/* ─── DESKTOP ─── */
+/* ─── Desktop ─── */
 @media (min-width: 1024px) {
-
-  /* Content column */
   #manifesto {
     max-width: 700px;
     padding-left: 40px;
@@ -448,13 +369,9 @@ body::before {
   }
   #closing {
     max-width: 700px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 6rem;
-    padding-bottom: 10rem;
+    padding: 6rem 40px 10rem;
   }
 
-  /* Spacing scale — 2rem / 4rem / 6rem */
   .manifesto-rule    { margin-bottom: 4rem; }
   .manifesto-meta    { margin-bottom: 4rem; }
   .manifesto-body    { font-size: 19px; margin-bottom: 2rem; }
@@ -466,13 +383,10 @@ body::before {
   .manifesto-closing-quote { margin-top: 5rem; padding: 3rem 0; }
   #manifesto { padding-bottom: 8rem; }
 
-  /* Type sizes */
   .manifesto-opener  { font-size: 30px; }
   .manifesto-triple-line { font-size: 17px; }
   .manifesto-closing-quote blockquote { font-size: 18px; line-height: 1.7; margin-bottom: 0.4rem; }
-  .manifesto-closing-quote cite { font-size: 8px; }
 
-  /* Horizontal grids */
   .manifesto-quotes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -484,7 +398,6 @@ body::before {
     font-size: 15px;
     border-top: 1px solid rgba(255,255,255,0.15);
     padding-top: 1.5rem;
-    padding-right: 0;
     margin-bottom: 0;
   }
   .manifesto-triple {
@@ -493,7 +406,6 @@ body::before {
     gap: 3rem;
   }
 
-  /* Logo mark */
   .landing-inner { padding-top: 6rem; }
   .landing-mark  { margin-bottom: 5rem; }
   .landing-mark svg {
@@ -501,20 +413,35 @@ body::before {
     height: 12px;
   }
 
-  /* Apply CTA — centred inline, underline under text only */
   .manifesto-apply {
     margin-top: 6rem;
     padding-top: 5rem;
     border-top: 1px solid rgba(255,255,255,0.18);
     align-items: center;
   }
+}
 
+@media (max-width: 600px) {
+  #manifesto, #closing {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .manifesto-quotes { padding-left: 1rem; }
+  .home-nav { padding: 16px 1.5rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ─── LANDING ─── -->
+<!-- ─── Nav (right-aligned) ─── -->
+<nav class="home-nav">
+  <div class="site-nav">
+    <a href="#manifesto" class="nav-link">Manifesto</a>
+    <a href="/archive" class="nav-link">Archive</a>
+  </div>
+</nav>
+
+<!-- ─── Landing ─── -->
 <section id="landing">
   <div class="landing-inner">
     <div class="landing-mark">
@@ -522,23 +449,15 @@ body::before {
         <rect x="0" y="0" width="120" height="12" fill="#ffffff"/>
       </svg>
     </div>
-
     <p class="landing-wordmark">Threshold</p>
-
-    <div class="landing-cta">
-      <button class="cta-link" onclick="document.getElementById('manifesto').scrollIntoView({behavior:'smooth'})">
-        Manifesto
-      </button>
-    </div>
   </div>
-
   <div class="scroll-hint">Scroll</div>
 </section>
 
-<!-- ─── MANIFESTO ─── -->
+<!-- ─── Manifesto ─── -->
 <section id="manifesto">
   <div class="manifesto-rule reveal"></div>
-  <p class="manifesto-meta reveal">Manifesto</p>
+  <p class="manifesto-meta reveal"><span class="section-marker">&sect; 01</span> Manifesto</p>
 
   <h2 class="manifesto-opener reveal">
     A Threshold is a crossing. A line in the sand. A doorway.
@@ -550,15 +469,15 @@ body::before {
 
   <div class="manifesto-quotes reveal">
     <div class="manifesto-quote">
-      <span class="quote-text">"Existence precedes essence."</span>
+      <span class="quote-text">Existence precedes essence.</span>
       <span class="quote-attr">Sartre</span>
     </div>
     <div class="manifesto-quote">
-      <span class="quote-text">"Life is motion."</span>
+      <span class="quote-text">Life is motion.</span>
       <span class="quote-attr">Simmel</span>
     </div>
     <div class="manifesto-quote">
-      <span class="quote-text">"Know thyself."</span>
+      <span class="quote-text">Know thyself.</span>
       <span class="quote-attr">Delphic Maxim</span>
     </div>
   </div>
@@ -580,6 +499,7 @@ body::before {
   </p>
 
   <p class="manifesto-reject reveal">We reject this.</p>
+  <div class="manifesto-divider reveal"></div>
 
   <div class="manifesto-triple reveal">
     <p class="manifesto-triple-line">We take founding as a <strong>profoundly existential act.</strong> A pledge of time, a sacrifice.</p>
@@ -593,7 +513,7 @@ body::before {
     Founders with a drive so unreasonable and a vision so personal they cannot do anything but act. An orthogonality that can only come from originality.
   </p>
 
-  <p class="manifesto-offer-label reveal">What we offer</p>
+  <p class="manifesto-offer-label reveal"><span class="section-marker">&sect; 02</span> What we offer</p>
 
   <p class="manifesto-body reveal">
     The extraordinary space, programme intensity, community, and seriousness to allow you to profoundly understand yourself before you build. You will emerge more clear eyed about your purpose than you have ever been.
@@ -611,22 +531,30 @@ body::before {
 
   <p class="manifesto-body reveal">If this is addressed to you and you need to know more. Take the first step.</p>
 
-  <div class="manifesto-apply reveal">
-    <a class="action-primary" href="https://forms.gle/23GeQ3Ut4H6RCVTy9" target="_blank" rel="noopener">Declare Interest — Cohort 0.5</a>
-    <a class="action-secondary" href="mailto:jack@thresholdresidency.org,jamie@thresholdresidency.org">Contact</a>
+  <div class="manifesto-cta reveal">
+    <a href="/apply" class="btn btn-outline">Declare interest — Cohort 0.5</a>
   </div>
 
   <div class="manifesto-closing-quote reveal">
-    <blockquote>"Until you make the unconscious conscious, it will direct your life and you will call it fate."</blockquote>
+    <blockquote>Until you make the unconscious conscious, it will direct your life and you will call it fate.</blockquote>
     <cite>Jung</cite>
   </div>
 </section>
 
+<!-- ─── Footer ─── -->
+<footer class="site-footer">
+  <div class="footer-rule"></div>
+  <div class="footer-inner">
+    <span class="footer-copy">Threshold</span>
+    <div style="display:flex;gap:24px;align-items:baseline;">
+      <a href="/archive" class="footer-link">Archive</a>
+      <a href="mailto:jack@thresholdresidency.org" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
 
 <script>
-  // Scroll reveal
-  var revealEls = document.querySelectorAll('.reveal, .manifesto-rule');
-
+  var els = document.querySelectorAll('.reveal, .manifesto-rule');
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -634,14 +562,8 @@ body::before {
         observer.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
-  });
-
-  revealEls.forEach(function(el) {
-    observer.observe(el);
-  });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { observer.observe(el); });
 </script>
 
 </body>

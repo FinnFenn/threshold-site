@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Preview</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #111; font-family: monospace; }
+.bar {
+  display: flex;
+  gap: 2px;
+  padding: 10px;
+  height: 100vh;
+}
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  padding: 0 4px;
+}
+iframe {
+  flex: 1;
+  border: none;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="panel">
+    <span class="label">Home</span>
+    <iframe src="/"></iframe>
+  </div>
+  <div class="panel">
+    <span class="label">Apply</span>
+    <iframe src="/apply"></iframe>
+  </div>
+  <div class="panel">
+    <span class="label">Archive</span>
+    <iframe src="/archive"></iframe>
+  </div>
+</div>
+</body>
+</html>

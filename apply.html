@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Declare Interest — Threshold</title>
+<meta name="description" content="Declare interest in Threshold's founder residency.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="style.css">
+<style>
+.apply-back {
+  padding: 24px var(--gutter);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.apply-back a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-meta);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+
+.apply-back a:hover { color: var(--fg); }
+
+.apply-main {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem 8rem;
+  min-height: 60vh;
+}
+
+.apply-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 4rem;
+}
+
+.field {
+  margin-bottom: 2.5rem;
+}
+
+.field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 0.75rem;
+}
+
+.field input,
+.field textarea {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.10);
+  color: var(--fg);
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.75;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  border-radius: 0;
+  -webkit-appearance: none;
+  resize: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: rgba(255,255,255,0.25);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.apply-submit {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.55);
+  padding: 0 0 3px;
+  background: none;
+  cursor: pointer;
+  transition: border-color 0.2s, opacity 0.2s;
+  outline: none;
+}
+
+.apply-submit:hover {
+  border-bottom-color: var(--fg);
+}
+
+.apply-submit:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.apply-response {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.42);
+  margin-top: 2rem;
+  min-height: 1.5em;
+  transition: opacity 0.3s;
+}
+
+/* ─── Confirmation ─── */
+.apply-confirm {
+  display: none;
+}
+
+.apply-confirm.visible {
+  display: block;
+}
+
+.confirm-text {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.2;
+  color: var(--fg);
+  margin-bottom: 1rem;
+}
+
+.confirm-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: 2.5rem;
+}
+
+.confirm-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-meta);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.confirm-link:hover {
+  color: var(--fg);
+  border-bottom-color: rgba(255,255,255,0.55);
+}
+
+/* ─── Honeypot ─── */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .apply-main {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .apply-back { padding: 16px 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .apply-main {
+    max-width: 580px;
+    padding: 6rem 40px 10rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="apply-back">
+  <a href="/">Threshold</a>
+</nav>
+
+<main class="apply-main">
+  <p class="apply-label">Declare interest — Cohort 0.5</p>
+
+  <div class="hp-field" aria-hidden="true">
+    <label for="hp_website">Website</label>
+    <input type="text" id="hp_website" name="_hp" tabindex="-1" autocomplete="off">
+  </div>
+
+  <form id="applyForm" novalidate>
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" id="name" required autocomplete="name" placeholder="Full name">
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" required autocomplete="email" placeholder="you@example.com">
+    </div>
+
+    <div class="field">
+      <label for="intent">What's calling you (crisis? domain? vision?) and why Threshold?</label>
+      <textarea id="intent" rows="5" required placeholder="Be specific. Say what only you can say."></textarea>
+      <p class="apply-response" id="intentHint" style="margin-top:8px;"></p>
+    </div>
+
+    <button type="submit" class="apply-submit" id="submitBtn" disabled>Submit</button>
+    <p class="apply-response" id="response"></p>
+  </form>
+
+  <div class="apply-confirm" id="confirmView">
+    <p class="confirm-text">Received.</p>
+    <p class="confirm-sub">We reply to every declaration.</p>
+    <a href="/" class="confirm-link">Return to manifesto</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-rule"></div>
+  <div class="footer-inner">
+    <span class="footer-copy">Threshold</span>
+    <a href="mailto:jack@thresholdresidency.org" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var form = document.getElementById('applyForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var response = document.getElementById('response');
+  var confirmView = document.getElementById('confirmView');
+
+  var intentHint = document.getElementById('intentHint');
+  var MIN_CHARS = 150;
+  var intentTouched = false;
+
+  function getVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+  function validate() {
+    var intentLen = getVal('intent').length;
+    var ok = getVal('name') && getVal('email') && isValidEmail(getVal('email')) && intentLen >= MIN_CHARS;
+    submitBtn.disabled = !ok;
+
+    if (intentTouched && intentLen > 0 && intentLen < MIN_CHARS) {
+      intentHint.textContent = (MIN_CHARS - intentLen) + ' more characters needed.';
+    } else {
+      intentHint.textContent = '';
+    }
+  }
+
+  document.getElementById('intent').addEventListener('blur', function() { intentTouched = true; validate(); });
+  document.addEventListener('input', validate);
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    intentTouched = true;
+
+    if (getVal('intent').length < MIN_CHARS) {
+      intentHint.textContent = 'Too short. Say more.';
+      return;
+    }
+    if (submitBtn.disabled) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '...';
+    response.textContent = '';
+
+    var payload = {
+      _hp: document.getElementById('hp_website').value,
+      name: getVal('name'),
+      email: getVal('email'),
+      intent: getVal('intent')
+    };
+
+    fetch('/.netlify/functions/submit-application', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r) {
+      if (!r.ok) throw new Error();
+      form.style.display = 'none';
+      confirmView.classList.add('visible');
+    })
+    .catch(function() {
+      response.textContent = 'Something went wrong. Try again.';
+      submitBtn.textContent = 'Submit';
+      validate();
+    });
+  });
+
+  validate();
+})();
+</script>
+
+</body>
+</html>
