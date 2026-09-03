@@ -208,6 +208,24 @@
   user-select: none;
   display: inline;
 }
+
+.tap-hint {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .tap-hint {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+}
 </style>
 </head>
 <body>
@@ -249,6 +267,7 @@
         <p><span class="redacted">"To building something that deserves to be built"</span></p>
       </div>
     </div>
+    <p class="tap-hint">Tap to view</p>
 
     <div class="archive-frame empty"><img src="placeholder-painting.jpg" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
     <div class="archive-frame empty"><img src="placeholder-painting.jpg" alt="Et sic in infinitum, Robert Fludd, 1617"></div>
