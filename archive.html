@@ -185,6 +185,22 @@
   margin-bottom: 0;
 }
 
+@media (max-width: 600px) {
+  .archive-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .archive-main {
+    padding: 3rem var(--gutter) 6rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .archive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .redacted {
   background: rgba(255,255,255,0.70);
   color: transparent;
