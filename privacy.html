@@ -8,26 +8,13 @@
 <link rel="stylesheet" href="style.css">
 <style>
 /* ─── Nav ─── */
-.apply-back {
-  padding: 24px var(--gutter);
+.home-nav {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  padding: 24px var(--gutter);
+  width: 100%;
 }
-
-.apply-back a {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--fg-meta);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-  transition: color 0.2s;
-}
-
-.apply-back a:hover { color: var(--fg); }
 
 /* ─── Layout ─── */
 .privacy-main {
@@ -36,13 +23,17 @@
   padding: 4rem 2.5rem 8rem;
 }
 
+.privacy-main .page-body {
+  margin-bottom: 2.8em;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 600px) {
   .privacy-main {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-  .apply-back { padding: 16px 1.5rem; }
+
 }
 
 @media (min-width: 1024px) {
@@ -55,16 +46,18 @@
 </head>
 <body>
 
-<nav class="apply-back">
-  <a href="/">Threshold</a>
+<nav class="home-nav">
+  <div class="site-nav">
+    <a href="/" class="nav-link">Threshold</a>
+  </div>
 </nav>
 
 <main class="privacy-main">
   <p class="section-label"><span class="section-marker">&sect;</span> Privacy</p>
 
-  <h1 class="page-opener">Privacy.</h1>
+  <h1 class="page-opener" style="margin-bottom:1.5rem;">Privacy.</h1>
 
-  <p class="page-body">Last updated 19 November 2026.</p>
+  <p class="page-body" style="margin-bottom:2.5rem;">Last updated 19 November 2026.</p>
 
   <p class="page-body">Threshold Formations Ltd runs this site.</p>
 
@@ -80,14 +73,6 @@
 
   <p class="page-body"><strong>Analytics.</strong> We count visits without cookies and without following you across other sites.</p>
 </main>
-
-<footer class="site-footer">
-  <div class="footer-rule"></div>
-  <div class="footer-inner">
-    <span class="footer-copy">Threshold</span>
-    <a href="/privacy" class="footer-link">Privacy</a>
-  </div>
-</footer>
 
 </body>
 </html>

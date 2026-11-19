@@ -74,6 +74,15 @@ body::before {
   mix-blend-mode: overlay;
 }
 
+/* ─── Home nav (right-aligned) ─── */
+.home-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 24px var(--gutter);
+  width: 100%;
+}
+
 /* ─── Header (inner pages) ─── */
 .site-header {
   display: flex;

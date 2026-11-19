@@ -8,26 +8,13 @@
 <link rel="stylesheet" href="style.css">
 <style>
 /* ─── Nav ─── */
-.apply-back {
-  padding: 24px var(--gutter);
+.home-nav {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  padding: 24px var(--gutter);
+  width: 100%;
 }
-
-.apply-back a {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--fg-meta);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-  transition: color 0.2s;
-}
-
-.apply-back a:hover { color: var(--fg); }
 
 /* ─── Layout ─── */
 .expedition-main {
@@ -86,23 +73,6 @@
   color: var(--fg);
 }
 
-/* Terms: bold standalone statements */
-.expedition-terms {
-  margin: 2rem 0 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  text-align: center;
-}
-
-.expedition-terms p {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(18px, 2vw, 22px);
-  line-height: 1.4;
-  color: var(--fg);
-}
-
 /* Details list (no bullets) */
 .expedition-details {
   list-style: none;
@@ -121,7 +91,7 @@
 /* Bullet list */
 .expedition-must {
   list-style: disc;
-  padding-left: 1.2rem;
+  padding-left: 1.8rem;
   margin: 0 0 2.5rem;
 }
 
@@ -221,7 +191,7 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-  .apply-back { padding: 16px 1.5rem; }
+
 }
 
 @media (min-width: 1024px) {
@@ -240,8 +210,10 @@
 </head>
 <body>
 
-<nav class="apply-back">
-  <a href="/">Threshold</a>
+<nav class="home-nav">
+  <div class="site-nav">
+    <a href="/" class="nav-link">Threshold</a>
+  </div>
 </nav>
 
 <main class="expedition-main">
@@ -255,11 +227,13 @@
     This is the nature of an expedition. A small, chosen group going into the unknown, at real cost, for something greater than themselves.
   </p>
 
-  <div class="expedition-terms">
-    <p>29th of December to 29th of January.</p>
-    <p>One month spent in our sanctuary.</p>
-    <p>Entirely dedicated to extraordinary work.</p>
-  </div>
+  <h2 class="expedition-h2" style="margin-top:2rem;">Logistics:</h2>
+
+  <ul class="expedition-must">
+    <li>29th of December to 29th of January.</li>
+    <li>One month spent in our sanctuary.</li>
+    <li>Entirely dedicated to extraordinary work.</li>
+  </ul>
 
   <div class="expedition-divider"></div>
 
@@ -293,11 +267,11 @@
   </p>
 
   <p class="expedition-body">
-    <span class="expedition-portrait-name">Prophet –</span> You will reorganise society through technology. You have the remarkable insight and foresight to see future worlds and the agency to make them exist. People must see that when you say something, it happens.
+    <span class="expedition-portrait-name">Prophet —</span> You will reorganise society through technology. You have the remarkable insight and foresight to see future worlds and the agency to make them exist. People must see that when you say something, it happens.
   </p>
 
   <p class="expedition-body">
-    <span class="expedition-portrait-name">Inventor –</span> You go after the hardest, deepest technical problems. Solving these in an elegant way creates intrinsic value. You will change how science and technology fundamentally work, without fear or hesitation.
+    <span class="expedition-portrait-name">Inventor —</span> You go after the hardest, deepest technical problems. Solving these in an elegant way creates intrinsic value. You will change how science and technology fundamentally work, without fear or hesitation.
   </p>
 
   <p class="expedition-reject">We will turn away the derivative, the copied, the unserious and undedicated.</p>
@@ -319,13 +293,6 @@
   <a href="/apply" class="btn btn-outline">Join waitlist</a>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-rule"></div>
-  <div class="footer-inner">
-    <span class="footer-copy">Threshold</span>
-    <a href="/privacy" class="footer-link">Privacy</a>
-  </div>
-</footer>
 
 </body>
 </html>
