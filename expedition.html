@@ -16,6 +16,26 @@
   width: 100%;
 }
 
+/* ─── Page frame ─── */
+.page-frame {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.page-frame-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
+.page-frame-symbol {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: rgba(255,255,255,0.25);
+}
+
 /* ─── Layout ─── */
 .expedition-main {
   max-width: 620px;
@@ -217,7 +237,11 @@
 </nav>
 
 <main class="expedition-main">
-  <p class="expedition-label"><span class="section-marker">&sect;</span> Expedition I</p>
+  <div class="page-frame">
+    <span class="page-frame-line"></span>
+    <span class="page-frame-symbol">&sect;</span>
+    <span class="page-frame-line"></span>
+  </div>
 
   <p class="expedition-body">
     In the heroic age of polar exploration, Scott, Shackleton and their crews left Britain for the ends of the earth. They went for knowledge, for the unmapped, for the chance to stand where no one had stood. They went knowing the cost: months of ice and darkness, and no promise of return. Those who came back were not the same people who had left.
@@ -227,7 +251,7 @@
     This is the nature of an expedition. A small, chosen group going into the unknown, at real cost, for something greater than themselves.
   </p>
 
-  <h2 class="expedition-h2" style="margin-top:2rem;">Logistics:</h2>
+  <h2 class="expedition-h2" style="margin-top:2rem;">Expedition I</h2>
 
   <ul class="expedition-must">
     <li>29th of December to 29th of January.</li>
