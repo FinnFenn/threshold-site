@@ -1,4 +1,19 @@
 const { google } = require("googleapis");
+const { sendEmail } = require("./lib/send");
+const { thankYou } = require("./lib/emails");
+
+function getSheets() {
+  const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
+  const auth = new google.auth.GoogleAuth({
+    credentials,
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  });
+  return google.sheets({ version: "v4", auth });
+}
+
+function timestamp() {
+  return new Date().toLocaleString("en-GB", { timeZone: "Europe/London" }).replace(",", "");
+}
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -14,36 +29,69 @@ exports.handler = async (event) => {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid request" }) };
   }
 
-  // Honeypot — silently accept
   if (data._hp) {
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   }
 
-  // Validate email
   const email = typeof data.email === "string" ? data.email.trim() : "";
   if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid email" }) };
   }
 
-  // Write to Google Sheets
   try {
-    const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
-    const auth = new google.auth.GoogleAuth({
-      credentials,
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    const sheets = getSheets();
+    const sheetId = process.env.GOOGLE_SHEET_ID;
+
+    // Check for duplicate
+    const existing = await sheets.spreadsheets.values.get({
+      spreadsheetId: sheetId,
+      range: "Waitlist!B:B",
     });
-    const sheets = google.sheets({ version: "v4", auth });
+    const rows = existing.data.values || [];
+    const isDupe = rows.some((r) => r[0] && r[0].toLowerCase() === email.toLowerCase());
+    if (isDupe) {
+      return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
+    }
 
-    const timestamp = new Date().toLocaleString("en-GB", { timeZone: "Europe/London" }).replace(",", "");
-
+    // Append row
     await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "Waitlist!A:B",
+      spreadsheetId: sheetId,
+      range: "Waitlist!A:C",
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[timestamp, email]],
+        values: [[timestamp(), email, ""]],
       },
     });
+
+    // Send thank-you email, fill column C on success
+    try {
+      await sendEmail({ to: email, ...thankYou });
+
+      // Find the row we just wrote (last row with this email)
+      const updated = await sheets.spreadsheets.values.get({
+        spreadsheetId: sheetId,
+        range: "Waitlist!B:B",
+      });
+      const allRows = updated.data.values || [];
+      let rowIndex = -1;
+      for (let i = allRows.length - 1; i >= 0; i--) {
+        if (allRows[i][0] && allRows[i][0].toLowerCase() === email.toLowerCase()) {
+          rowIndex = i + 1; // 1-based
+          break;
+        }
+      }
+      if (rowIndex > 0) {
+        await sheets.spreadsheets.values.update({
+          spreadsheetId: sheetId,
+          range: `Waitlist!C${rowIndex}`,
+          valueInputOption: "USER_ENTERED",
+          requestBody: { values: [[timestamp()]] },
+        });
+      }
+    } catch (emailErr) {
+      console.error("Email send failed:", emailErr);
+      // Still return ok — catchup job will retry
+    }
   } catch (err) {
     console.error("Google Sheets error:", err);
     return { statusCode: 500, headers, body: JSON.stringify({ error: "Failed to save" }) };
