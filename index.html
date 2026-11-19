@@ -67,11 +67,11 @@
 
 .landing-wordmark {
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 300;
+  font-size: var(--mono-size);
+  font-weight: var(--mono-weight);
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: var(--mono-color);
   margin-bottom: 3.5rem;
   opacity: 0;
   animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
@@ -148,7 +148,7 @@
 }
 
 /* ─── Manifesto (Cormorant, matching live site) ─── */
-#manifesto {
+#prophecy {
   max-width: 620px;
   margin: 0 auto;
   padding: 8rem 2.5rem 0;
@@ -209,7 +209,7 @@
   font-style: italic;
   font-size: clamp(14px, 1.5vw, 16px);
   line-height: 1.65;
-  color: rgba(255,255,255,0.42);
+  color: rgba(255,255,255,0.68);
   margin-bottom: 1.5rem;
 }
 
@@ -221,11 +221,11 @@
   display: block;
   font-family: var(--mono);
   font-style: normal;
-  font-size: 8px;
-  font-weight: 300;
-  letter-spacing: 0.22em;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.35);
 }
 
 .manifesto-statement {
@@ -361,7 +361,7 @@
 
 /* ─── Desktop ─── */
 @media (min-width: 1024px) {
-  #manifesto {
+  #prophecy {
     max-width: 700px;
     padding-left: 40px;
     padding-right: 40px;
@@ -381,7 +381,7 @@
   .manifesto-triple  { margin-bottom: 4rem; }
   .manifesto-offer-label { margin-top: 6rem; margin-bottom: 2rem; }
   .manifesto-closing-quote { margin-top: 5rem; padding: 3rem 0; }
-  #manifesto { padding-bottom: 8rem; }
+  #prophecy { padding-bottom: 8rem; }
 
   .manifesto-opener  { font-size: 30px; }
   .manifesto-triple-line { font-size: 17px; }
@@ -422,7 +422,7 @@
 }
 
 @media (max-width: 600px) {
-  #manifesto, #closing {
+  #prophecy, #closing {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
@@ -436,8 +436,8 @@
 <!-- ─── Nav (right-aligned) ─── -->
 <nav class="home-nav">
   <div class="site-nav">
-    <a href="#manifesto" class="nav-link">Manifesto</a>
-    <a href="/archive" class="nav-link">Archive</a>
+    <a href="#prophecy" class="nav-link">Prophecy</a>
+    <a href="/expedition" class="nav-link">Expedition I</a>
   </div>
 </nav>
 
@@ -455,26 +455,26 @@
 </section>
 
 <!-- ─── Manifesto ─── -->
-<section id="manifesto">
+<section id="prophecy">
   <div class="manifesto-rule reveal"></div>
-  <p class="manifesto-meta reveal"><span class="section-marker">&sect; 01</span> Manifesto</p>
+  <p class="manifesto-meta reveal"><span class="section-marker">&sect;</span> Prophecy</p>
 
   <h2 class="manifesto-opener reveal">
     A Threshold is a crossing. A line in the sand. A doorway.
   </h2>
 
   <p class="manifesto-body reveal">
-    Crossing it will change you forever. You cannot go back. We need people who feel the pull to take this step. The boldness to seek discontinuities in life's story.
+    Crossing it will change you forever. You cannot go back. The world will be shaped by those who feel the pull to take this step. The boldness to seek discontinuities in life's story.
   </p>
 
   <div class="manifesto-quotes reveal">
     <div class="manifesto-quote">
-      <span class="quote-text">Existence precedes essence.</span>
-      <span class="quote-attr">Sartre</span>
+      <span class="quote-text">Every moment one is taking birth.</span>
+      <span class="quote-attr">S.N. Goenka</span>
     </div>
     <div class="manifesto-quote">
-      <span class="quote-text">Life is motion.</span>
-      <span class="quote-attr">Simmel</span>
+      <span class="quote-text">Existence precedes essence.</span>
+      <span class="quote-attr">Sartre</span>
     </div>
     <div class="manifesto-quote">
       <span class="quote-text">Know thyself.</span>
@@ -483,19 +483,11 @@
   </div>
 
   <p class="manifesto-body reveal">
-    The great irony of start-up culture is that it is now one of mimicry, homogeneity, treading a set path. Seeing the bright bulb of Silicon Valley from our transatlantic vantage point we decry the moths that fly towards it, the jarring noise that is generated from it.
-  </p>
-
-  <p class="manifesto-statement reveal">
-    We are starting a revolution. Not merely about scaling Europe or attaining growth in the UK. This is a revolution to define the culture of Britain.
+    The great tragedy of start-up culture is that it is now one of mimicry, homogeneity, treading a set path. Seeing the bright bulb of Silicon Valley from our transatlantic vantage point we decry the moths that fly towards it, the jarring noise that is generated from it.
   </p>
 
   <p class="manifesto-body reveal">
-    In Britain we must introduce a culture of founding — the means to reclaim science, progress, rationalism, a desire for truth from our legacy of polymaths, inventors and great scientists. We have all the raw material but the system cannot see the alchemy that will turn it into gold. This, fundamentally, is the people. The founders. The vanguard.
-  </p>
-
-  <p class="manifesto-body reveal">
-    The popular iconography of the greatest founders obscures their journey, their passage, and presents it as inevitable. We are given a history to only read backwards. This restricts the cast to only the hustlers, the pattern matchers, those who prefer slop over substance. The start-up ecosystem that should activate the UK instead alienates its talent. It prioritises pace over depth, constrains originality and doesn't reward first-principles thinking.
+    The popular iconography of the greatest founders obscures their journey, their passage, and presents it as inevitable. We are given a history to only read backwards. This restricts the cast to only the hustlers, the pattern matchers, those who prefer slop over substance.
   </p>
 
   <p class="manifesto-reject reveal">We reject this.</p>
@@ -507,36 +499,38 @@
     <p class="manifesto-triple-line">We take founding as a <strong>search for direction.</strong> A direction that should be intrinsic, not reactive.</p>
   </div>
 
-  <p class="manifesto-statement reveal">We will generate truly category defining companies.</p>
-
   <p class="manifesto-body reveal">
-    Founders with a drive so unreasonable and a vision so personal they cannot do anything but act. An orthogonality that can only come from originality.
-  </p>
-
-  <p class="manifesto-offer-label reveal"><span class="section-marker">&sect; 02</span> What we offer</p>
-
-  <p class="manifesto-body reveal">
-    The extraordinary space, programme intensity, community, and seriousness to allow you to profoundly understand yourself before you build. You will emerge more clear eyed about your purpose than you have ever been.
+    The rumblings of the most important century can be felt everywhere. In labs, at the kitchen table, in the unease of every institution that once believed itself to be permanent. We all feel the acceleration of a current. A force of drastic scale. A force totally dispersed. We feel, everywhere, the turning of wheels. We see the stirrings of a trillion revolutions, entwined into every facet of existence. This has never been seen before. The current will have such force that most will simply be carried. Few can truly move within it. Fewer still can bend it… A scarcity within a scarcity.
   </p>
 
   <p class="manifesto-body reveal">
-    The opening of doors to break the boundaries of what is possible. To break the glass ceilings — to start the questioning 'why can't this be me?'
+    These will be those able to hold the existential, the moral, the social in one hand, deep technological brilliance in the other, while sprinting at the brutal pace required to outdistance the mercenaries snapping at their heels. These will come from British soil.
   </p>
 
   <p class="manifesto-body reveal">
-    The pathway to building.
+    British soil is legacy. It covers our buried tradition of polymaths, the bones of Newton, Darwin, Lovelace, Bacon. Our kings under the hill. It remembers the trace footprints of those who came here, Ramanujan, Rutherford, Chandrasekhar, Wittgenstein.
   </p>
 
-  <p class="manifesto-statement reveal">All free. No equity taken. No programme fees.</p>
+  <p class="manifesto-body reveal">
+    Our soil is science, imagination, reason… a desire for truth. Many see it as dirt, as mud. What pollutes it is imitation, a slick of our own mimicry, borrowed ambitions and copied paths laid over the ground until it can no longer breathe.
+  </p>
 
-  <p class="manifesto-body reveal">If this is addressed to you and you need to know more. Take the first step.</p>
+  <p class="manifesto-body reveal">
+    The current of technology that turns the wheels of revolution will spill out onto this soil. It will not come gently. It will tear away the stagnant, the imitative, the settled. And where it passes, it will leave new silt over the bones of the greats. The past and future will combine.
+  </p>
+
+  <p class="manifesto-body reveal">
+    A golden tree will grow. And on it, a Frazerian golden bough. Those who break it will be the successors. True inventors, true visionaries, true founders. Those polymaths with visions so existentially original they cannot do anything but act.
+  </p>
+
+  <p class="manifesto-body reveal">If this is you, take the first step.</p>
 
   <div class="manifesto-cta reveal">
-    <a href="/apply" class="btn btn-outline">Declare interest — Cohort 0.5</a>
+    <a href="/expedition" class="btn btn-outline">Expedition I</a>
   </div>
 
   <div class="manifesto-closing-quote reveal">
-    <blockquote>Until you make the unconscious conscious, it will direct your life and you will call it fate.</blockquote>
+    <blockquote>When an inner situation is not made conscious, it happens outside, as fate.</blockquote>
     <cite>Jung</cite>
   </div>
 </section>
@@ -546,9 +540,7 @@
   <div class="footer-rule"></div>
   <div class="footer-inner">
     <span class="footer-copy">Threshold</span>
-    <div style="display:flex;gap:24px;align-items:baseline;">
-      <a href="/archive" class="footer-link">Archive</a>
-      </div>
+    <a href="/privacy" class="footer-link">Privacy</a>
   </div>
 </footer>
 

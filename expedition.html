@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expedition I · Threshold Residency</title>
+<meta name="description" content="Expedition I: a small, chosen group going into the unknown, at real cost, for something greater than themselves. 29 December to 29 January.">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ─── Nav ─── */
+.apply-back {
+  padding: 24px var(--gutter);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.apply-back a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-meta);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+
+.apply-back a:hover { color: var(--fg); }
+
+/* ─── Layout ─── */
+.expedition-main {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem 8rem;
+}
+
+/* ─── Type scale ─── */
+
+/* Label: mono, tiny, uppercase — used once at top */
+.expedition-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 2rem;
+}
+
+/* H1: large serif */
+.expedition-h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 3rem;
+}
+
+/* H2: medium serif, bold */
+.expedition-h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(20px, 2.5vw, 26px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin: 4rem 0 1.5rem;
+}
+
+/* Body: serif, light */
+.expedition-body {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 1.5rem;
+}
+
+.expedition-body strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* Terms: bold standalone statements */
+.expedition-terms {
+  margin: 2rem 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.expedition-terms p {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.4;
+  color: var(--fg);
+}
+
+/* Details list (no bullets) */
+.expedition-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.expedition-details li {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.68);
+}
+
+/* Bullet list */
+.expedition-must {
+  list-style: disc;
+  padding-left: 1.2rem;
+  margin: 0 0 2.5rem;
+}
+
+.expedition-must li {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 0.6rem;
+}
+
+.expedition-must li:last-child { margin-bottom: 0; }
+
+/* Portrait name: bold, not italic */
+.expedition-portrait-name {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* Reject statement */
+.expedition-reject {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-align: center;
+  margin: 4rem 0;
+  line-height: 2.2;
+}
+
+/* Offering list (no bullets, bold lead word) */
+.expedition-offering {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+}
+
+.expedition-offering li {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 1rem;
+}
+
+.expedition-offering li:last-child { margin-bottom: 0; }
+
+.expedition-offering li strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* Apply note */
+.expedition-apply-note {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 2rem;
+}
+
+/* CTA link */
+.expedition-cta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.55);
+  padding-bottom: 3px;
+  transition: border-color 0.2s;
+  display: inline-block;
+}
+
+.expedition-cta:hover {
+  border-bottom-color: var(--fg);
+}
+
+/* Divider */
+.expedition-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.14);
+  margin: 4rem 0;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .expedition-main {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .apply-back { padding: 16px 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .expedition-main {
+    max-width: 700px;
+    padding: 6rem 40px 10rem;
+  }
+  .expedition-body,
+  .expedition-details li,
+  .expedition-must li,
+  .expedition-offering li,
+  .expedition-apply-note { font-size: 19px; }
+  .expedition-h2 { margin-top: 5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="apply-back">
+  <a href="/">Threshold</a>
+</nav>
+
+<main class="expedition-main">
+  <p class="expedition-label"><span class="section-marker">&sect;</span> Expedition I</p>
+
+  <p class="expedition-body">
+    In the heroic age of polar exploration, Scott, Shackleton and their crews left Britain for the ends of the earth. They went for knowledge, for the unmapped, for the chance to stand where no one had stood. They went knowing the cost: months of ice and darkness, and no promise of return. Those who came back were not the same people who had left.
+  </p>
+
+  <p class="expedition-body">
+    This is the nature of an expedition. A small, chosen group going into the unknown, at real cost, for something greater than themselves.
+  </p>
+
+  <div class="expedition-terms">
+    <p>29th of December to 29th of January.</p>
+    <p>One month spent in our sanctuary.</p>
+    <p>Entirely dedicated to extraordinary work.</p>
+  </div>
+
+  <div class="expedition-divider"></div>
+
+  <h2 class="expedition-h2" style="margin-top:0;">Who we are looking for:</h2>
+
+  <p class="expedition-body">
+    Threshold is not an accelerator. It is not an incubator. These select on ideas or companies. They measure in raises and ARR. This becomes noisy quickly. Threshold is a rite of passage into founding. Founding does not begin at incorporation. You are a founder when you are a singularity of momentum— when your conviction, excellence and heart are able to magnetise people to you and bring them along with you.
+  </p>
+
+  <p class="expedition-body">
+    We do not care about people with merely a great idea; <strong>we care about great people.</strong> We know everything is downstream of the person.
+  </p>
+
+  <h2 class="expedition-h2">You must:</h2>
+
+  <ul class="expedition-must">
+    <li>Have an irrational dedication to originality.</li>
+    <li>Let inner necessity be the root of everything you do.</li>
+    <li>Show us things we have never seen before.</li>
+    <li>Have technical brilliance that has been tested: in research, in invention, or in the hardest problems you have solved.</li>
+    <li>Reject silos. Find inspiration in philosophy as readily as in physics, in history as readily as in computation.</li>
+    <li>Strive. Be foolish. Be desperate in your pursuit of greatness.</li>
+    <li>Care for others. Have deep respect for those who strive with you.</li>
+    <li>Understand the gravity of changing the world.</li>
+    <li>Be all in— physically, emotionally, psychologically.</li>
+    <li>Know you are walking this path yourself. We can give you every provision and show you the route. We cannot walk it for you.</li>
+  </ul>
+
+  <p class="expedition-body">
+    Maybe you are a specific type of person. Two portraits that interest us are:
+  </p>
+
+  <p class="expedition-body">
+    <span class="expedition-portrait-name">Prophet –</span> You will reorganise society through technology. You have the remarkable insight and foresight to see future worlds and the agency to make them exist. People must see that when you say something, it happens.
+  </p>
+
+  <p class="expedition-body">
+    <span class="expedition-portrait-name">Inventor –</span> You go after the hardest, deepest technical problems. Solving these in an elegant way creates intrinsic value. You will change how science and technology fundamentally work, without fear or hesitation.
+  </p>
+
+  <p class="expedition-reject">We will turn away the derivative, the copied, the unserious and undedicated.</p>
+
+  <div class="expedition-divider"></div>
+
+  <h2 class="expedition-h2" style="margin-top:0;">Our offering:</h2>
+
+  <ul class="expedition-offering">
+    <li><strong>Sanctuary.</strong> One month, fully free. Your own room, every meal, your workspace, compute and tokens. Travel there and back, covered. Nothing to think about but the work.</li>
+    <li><strong>Identity.</strong> You leave knowing who you are, what you must do, and why, with a precision you have never had before.</li>
+    <li><strong>The draft.</strong> A month among the highest density of peers you will ever experience.</li>
+    <li><strong>Our network.</strong> Investors who bet on extraordinary people with conviction, and the founders they have already chosen, doing great things.</li>
+    <li><strong>A conspiracy.</strong> A vanguard of founders, bound to each other for life, changing who decides the direction of technology this century.</li>
+  </ul>
+
+  <p class="expedition-apply-note">Applications are individual.</p>
+
+  <a href="/apply" class="btn btn-outline">Join waitlist</a>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-rule"></div>
+  <div class="footer-inner">
+    <span class="footer-copy">Threshold</span>
+    <a href="/privacy" class="footer-link">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>

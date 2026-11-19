@@ -3,13 +3,23 @@
   publish = "."
 
 [[redirects]]
-  from = "/archive"
-  to = "/archive.html"
+  from = "/expedition"
+  to = "/expedition.html"
   status = 200
+
+[[redirects]]
+  from = "/archive"
+  to = "/expedition"
+  status = 301
 
 [[redirects]]
   from = "/apply"
   to = "/apply.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
   status = 200
 
 [[redirects]]

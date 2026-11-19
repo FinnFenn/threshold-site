@@ -1,6 +1,6 @@
 /* ─── Threshold ─── */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,13 +17,31 @@
   --line-faint: rgba(255,255,255,0.10);
 
   --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
 
   --gutter: clamp(24px, 6vw, 64px);
   --section-y: clamp(80px, 10vw, 128px);
   --max-page: 1280px;
   --measure: 62ch;
+
+  /* ─── Type scale ─── */
+  --mono-size: 11px;
+  --mono-weight: 400;
+  --mono-color: rgba(255,255,255,0.55);
+  --mono-spacing: 0.18em;
+
+  --cta-weight: 500;
+
+  --h1-size: clamp(32px, 4vw, 44px);
+  --h1-weight: 500;
+
+  --h2-size: clamp(24px, 2.6vw, 28px);
+  --h2-weight: 500;
+
+  --body-size: clamp(18px, 1.6vw, 20px);
+  --body-weight: 400;
+  --body-color: rgba(255,255,255,0.80);
+  --body-lh: 1.7;
 }
 
 html {
@@ -37,9 +55,9 @@ html {
 
 body {
   min-height: 100vh;
-  font-weight: 300;
-  font-size: 17px;
-  line-height: 1.75;
+  font-weight: var(--body-weight);
+  font-size: var(--body-size);
+  line-height: var(--body-lh);
 }
 
 /* ─── Grain ─── */
@@ -82,9 +100,9 @@ body::before {
 
 .mark-text {
   font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
+  font-size: var(--mono-size);
+  font-weight: var(--mono-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
   color: var(--fg);
 }
@@ -97,11 +115,11 @@ body::before {
 
 .nav-link {
   font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
+  font-size: var(--mono-size);
+  font-weight: var(--mono-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
-  color: var(--fg-meta);
+  color: var(--mono-color);
   text-decoration: none;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
@@ -113,9 +131,9 @@ body::before {
 
 .nav-cta {
   font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
+  font-size: var(--mono-size);
+  font-weight: var(--cta-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
   color: var(--fg);
   text-decoration: none;
@@ -153,20 +171,20 @@ body::before {
 
 .footer-copy {
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-size: var(--mono-size);
+  font-weight: var(--mono-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
-  color: var(--fg-muted);
+  color: var(--mono-color);
 }
 
 .footer-link {
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-size: var(--mono-size);
+  font-weight: var(--mono-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
-  color: var(--fg-meta);
+  color: var(--mono-color);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -176,17 +194,42 @@ body::before {
 /* ─── Section label ─── */
 .section-label {
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
+  font-size: var(--mono-size);
+  font-weight: var(--mono-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
-  color: var(--fg-muted);
+  color: var(--mono-color);
   margin-bottom: 28px;
 }
 
 .section-marker {
-  color: var(--fg-meta);
+  color: var(--mono-color);
   margin-right: 10px;
+}
+
+/* ─── Shared page text ─── */
+.page-opener {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(22px, 3.5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 3rem;
+}
+
+.page-body {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 1.8em;
+}
+
+.page-body strong {
+  font-weight: 600;
+  color: var(--fg);
 }
 
 /* ─── Epigraph ─── */
@@ -197,21 +240,21 @@ body::before {
 
 .epigraph-text {
   font-family: var(--serif);
-  font-weight: 300;
+  font-weight: var(--body-weight);
   font-style: italic;
-  font-size: clamp(14px, 1.5vw, 16px);
-  line-height: 1.65;
-  color: var(--fg-meta);
+  font-size: var(--body-size);
+  line-height: var(--body-lh);
+  color: var(--mono-color);
   margin-bottom: 0.6rem;
 }
 
 .epigraph-source {
   font-family: var(--mono);
-  font-size: 8px;
-  font-weight: 300;
-  letter-spacing: 0.22em;
+  font-size: var(--mono-size);
+  font-weight: var(--mono-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
-  color: var(--fg-dim);
+  color: var(--mono-color);
 }
 
 /* ─── Triple grid ─── */
@@ -238,9 +281,9 @@ body::before {
 .btn {
   display: inline-block;
   font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
+  font-size: var(--mono-size);
+  font-weight: var(--cta-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
   text-decoration: none;
   padding: 14px 28px;
@@ -274,11 +317,11 @@ body::before {
 .field-label {
   display: block;
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
+  font-size: var(--mono-size);
+  font-weight: var(--mono-weight);
+  letter-spacing: var(--mono-spacing);
   text-transform: uppercase;
-  color: var(--fg-muted);
+  color: var(--mono-color);
   margin-bottom: 12px;
 }
 
@@ -289,8 +332,8 @@ body::before {
   border: 1px solid var(--line);
   color: var(--fg);
   font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 300;
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
   padding: 14px 16px;
   outline: none;
   transition: border-color 0.2s;
@@ -338,9 +381,9 @@ textarea.field-input {
 
 .field-option span {
   font-family: var(--serif);
-  font-size: 17px;
-  font-weight: 300;
-  color: var(--fg-muted);
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  color: var(--body-color);
   transition: color 0.15s;
 }
 

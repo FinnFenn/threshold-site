@@ -46,7 +46,7 @@ exports.handler = async (event) => {
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [[
-          new Date().toISOString(),
+          new Date().toLocaleString("en-GB", { timeZone: "Europe/London" }).replace(",", ""),
           data.name,
           data.email,
           data.intent,

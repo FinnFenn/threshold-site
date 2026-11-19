@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Declare Interest — Threshold Residency</title>
-<meta name="description" content="Declare interest in Threshold's founder residency.">
+<title>Waiting List · Threshold Residency</title>
+<meta name="description" content="Join the waiting list for Threshold's Expedition I.">
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="style.css">
 <style>
@@ -32,8 +32,14 @@
 .apply-main {
   max-width: 520px;
   margin: 0 auto;
-  padding: 4rem 2.5rem 8rem;
-  min-height: 60vh;
+  padding: 0 2.5rem;
+  height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
 }
 
 .apply-label {
@@ -44,6 +50,16 @@
   text-transform: uppercase;
   color: rgba(255,255,255,0.68);
   margin-bottom: 4rem;
+}
+
+.apply-heading {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(22px, 3.5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 3rem;
 }
 
 .field {
@@ -61,59 +77,58 @@
   margin-bottom: 0.75rem;
 }
 
-.field input,
-.field textarea {
+.field input {
   display: block;
   width: 100%;
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.10);
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
   color: var(--fg);
   font-family: var(--serif);
   font-size: 18px;
   font-weight: 300;
   line-height: 1.75;
-  padding: 14px 16px;
+  padding: 10px 0;
   outline: none;
   transition: border-color 0.3s;
   border-radius: 0;
   -webkit-appearance: none;
-  resize: none;
 }
 
-.field input:focus,
-.field textarea:focus {
-  border-color: rgba(255,255,255,0.25);
+.field input:focus {
+  border-bottom-color: rgba(255,255,255,0.45);
 }
 
-.field input::placeholder,
-.field textarea::placeholder {
+.field input::placeholder {
   color: rgba(255,255,255,0.35);
 }
 
-.apply-submit {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--fg);
-  text-decoration: none;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.55);
-  padding: 0 0 3px;
-  background: none;
-  cursor: pointer;
-  transition: border-color 0.2s, opacity 0.2s;
-  outline: none;
-}
-
-.apply-submit:hover {
-  border-bottom-color: var(--fg);
-}
-
-.apply-submit:disabled {
+.btn:disabled {
   opacity: 0.2;
   cursor: default;
+  pointer-events: none;
+}
+
+.apply-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.42);
+  margin-top: 2rem;
+  line-height: 1.7;
+}
+
+.apply-note a {
+  color: rgba(255,255,255,0.42);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.apply-note a:hover {
+  color: var(--fg);
+  border-bottom-color: rgba(255,255,255,0.55);
 }
 
 .apply-response {
@@ -124,7 +139,18 @@
   color: rgba(255,255,255,0.42);
   margin-top: 2rem;
   min-height: 1.5em;
+  line-height: 1.7;
   transition: opacity 0.3s;
+}
+
+.apply-response a {
+  color: rgba(255,255,255,0.42);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+
+.apply-response a:hover {
+  color: var(--fg);
 }
 
 /* ─── Confirmation ─── */
@@ -133,26 +159,39 @@
 }
 
 .apply-confirm.visible {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
 }
 
-.confirm-text {
+.confirm-painting {
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 2.5rem;
+  opacity: 0.85;
+}
+
+.confirm-quote {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(22px, 3vw, 30px);
-  line-height: 1.2;
-  color: var(--fg);
-  margin-bottom: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.6rem;
 }
 
-.confirm-sub {
+.confirm-attr {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 300;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
-  margin-bottom: 2.5rem;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 3rem;
 }
 
 .confirm-link {
@@ -206,85 +245,70 @@
 </nav>
 
 <main class="apply-main">
-  <p class="apply-label">Declare interest — Cohort 0.5</p>
-
   <div class="hp-field" aria-hidden="true">
     <label for="hp_website">Website</label>
     <input type="text" id="hp_website" name="_hp" tabindex="-1" autocomplete="off">
   </div>
 
-  <form id="applyForm" novalidate>
-    <div class="field">
-      <label for="name">Name</label>
-      <input type="text" id="name" required autocomplete="name" placeholder="Full name">
-    </div>
-
+  <form id="waitlistForm" novalidate style="width:100%;">
     <div class="field">
       <label for="email">Email</label>
       <input type="email" id="email" required autocomplete="email" placeholder="you@example.com">
     </div>
 
-    <div class="field">
-      <label for="intent">What's calling you (crisis? domain? vision?) and why Threshold?</label>
-      <textarea id="intent" rows="5" required placeholder="Be specific. Say what only you can say."></textarea>
-      <p class="apply-response" id="intentHint" style="margin-top:8px;"></p>
-    </div>
-
-    <button type="submit" class="apply-submit" id="submitBtn" disabled>Submit</button>
+    <button type="submit" class="btn btn-outline" id="submitBtn" disabled>Join</button>
     <p class="apply-response" id="response"></p>
   </form>
 
+  <p class="apply-note" id="waitlistNote">We'll email you when applications open. <a href="/privacy">Privacy</a></p>
+
   <div class="apply-confirm" id="confirmView">
-    <p class="confirm-text">Received.</p>
-    <p class="confirm-sub">We reply to every declaration.</p>
-    <a href="/" class="confirm-link">Return to manifesto</a>
+    <img src="" alt="" class="confirm-painting" id="confirmImg">
+    <p class="confirm-quote" id="confirmQuote"></p>
+    <p class="confirm-attr" id="confirmAttr"></p>
+    <a href="/" class="confirm-link">Return to Threshold</a>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-rule"></div>
-  <div class="footer-inner">
-    <span class="footer-copy">Threshold</span>
-  </div>
-</footer>
 
 <script>
 (function() {
-  var form = document.getElementById('applyForm');
+  var form = document.getElementById('waitlistForm');
   var submitBtn = document.getElementById('submitBtn');
   var response = document.getElementById('response');
   var confirmView = document.getElementById('confirmView');
+  var waitlistNote = document.getElementById('waitlistNote');
 
-  var intentHint = document.getElementById('intentHint');
-  var MIN_CHARS = 150;
-  var intentTouched = false;
+  var confirmations = [
+    { src: '/confirm-1.jpg', alt: 'Shackleton expedition, Union Jack at the South Pole', quote: '\u201CCome, my friends, \u2019tis not too late to seek a newer world.\u201D', attr: 'Tennyson, Ulysses (1842)' },
+    { src: '/confirm-2.jpg', alt: 'Shackleton crew waving from Elephant Island', quote: '\u201CCome, my friends, \u2019tis not too late to seek a newer world.\u201D', attr: 'Tennyson, Ulysses (1842)' }
+  ];
 
   function getVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
   function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 
-  function validate() {
-    var intentLen = getVal('intent').length;
-    var ok = getVal('name') && getVal('email') && isValidEmail(getVal('email')) && intentLen >= MIN_CHARS;
-    submitBtn.disabled = !ok;
-
-    if (intentTouched && intentLen > 0 && intentLen < MIN_CHARS) {
-      intentHint.textContent = (MIN_CHARS - intentLen) + ' more characters needed.';
-    } else {
-      intentHint.textContent = '';
-    }
+  function showConfirm() {
+    var pick = confirmations[Math.floor(Math.random() * confirmations.length)];
+    document.getElementById('confirmImg').src = pick.src;
+    document.getElementById('confirmImg').alt = pick.alt;
+    var q = document.getElementById('confirmQuote');
+    var a = document.getElementById('confirmAttr');
+    if (pick.quote) { q.textContent = pick.quote; } else { q.style.display = 'none'; }
+    if (pick.attr) { a.textContent = pick.attr; } else { a.style.display = 'none'; }
+    form.style.display = 'none';
+    waitlistNote.style.display = 'none';
+    document.querySelector('.apply-back').style.display = 'none';
+    confirmView.classList.add('visible');
   }
 
-  document.getElementById('intent').addEventListener('blur', function() { intentTouched = true; validate(); });
+  function validate() {
+    submitBtn.disabled = !(getVal('email') && isValidEmail(getVal('email')));
+  }
+
   document.addEventListener('input', validate);
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    intentTouched = true;
-
-    if (getVal('intent').length < MIN_CHARS) {
-      intentHint.textContent = 'Too short. Say more.';
-      return;
-    }
     if (submitBtn.disabled) return;
 
     submitBtn.disabled = true;
@@ -293,24 +317,27 @@
 
     var payload = {
       _hp: document.getElementById('hp_website').value,
-      name: getVal('name'),
-      email: getVal('email'),
-      intent: getVal('intent')
+      email: getVal('email')
     };
 
-    fetch('/.netlify/functions/submit-application', {
+    // Skip fetch on localhost — show confirmation directly
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+      showConfirm();
+      return;
+    }
+
+    fetch('/.netlify/functions/join-waitlist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
     .then(function(r) {
       if (!r.ok) throw new Error();
-      form.style.display = 'none';
-      confirmView.classList.add('visible');
+      showConfirm();
     })
     .catch(function() {
-      response.textContent = 'Something went wrong. Try again.';
-      submitBtn.textContent = 'Submit';
+      response.textContent = 'Try again.';
+      submitBtn.textContent = 'Join';
       validate();
     });
   });
