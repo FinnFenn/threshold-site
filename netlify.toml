@@ -27,6 +27,12 @@
   to = "/preview.html"
   status = 200
 
+[functions."thanks-catchup"]
+  schedule = "@hourly"
+
+[functions."launch-email"]
+  schedule = "0 9 30 11 *"
+
 [[headers]]
   for = "/*"
   [headers.values]

@@ -63,7 +63,3 @@ exports.handler = async () => {
   console.log(`launch-email: sent ${sent}, remaining ${remaining}`);
   return { statusCode: 200, body: JSON.stringify({ sent, remaining }) };
 };
-
-exports.config = {
-  schedule: "0 9 30 11 *",
-};

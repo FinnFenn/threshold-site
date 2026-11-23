@@ -51,7 +51,3 @@ exports.handler = async () => {
   console.log(`thanks-catchup: sent ${sent}`);
   return { statusCode: 200, body: JSON.stringify({ sent }) };
 };
-
-exports.config = {
-  schedule: "@hourly",
-};

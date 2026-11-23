@@ -12,9 +12,9 @@ async function sendEmail({ to, subject, text, html }) {
   const actualTo = testTo || to;
   const actualSubject = testTo ? `[TEST to ${to}] ${subject}` : subject;
 
-  const { error } = await getClient().emails.send({
+  const { data, error } = await getClient().emails.send({
     from: FROM,
-    reply_to: REPLY_TO,
+    replyTo: REPLY_TO,
     to: actualTo,
     subject: actualSubject,
     text,
@@ -22,6 +22,7 @@ async function sendEmail({ to, subject, text, html }) {
   });
 
   if (error) throw new Error(error.message);
+  console.log(`Sent to ${actualTo} (id: ${data.id})`);
 }
 
 module.exports = { sendEmail };
