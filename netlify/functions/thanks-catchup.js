@@ -1,6 +1,6 @@
 const { google } = require("googleapis");
 const { sendEmail } = require("./lib/send");
-const { thankYou } = require("./lib/emails");
+const { thankYou, earlierInterest } = require("./lib/emails");
 
 function timestamp() {
   return new Date().toLocaleString("en-GB", { timeZone: "Europe/London" }).replace(",", "");
@@ -17,7 +17,7 @@ exports.handler = async () => {
 
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: sheetId,
-    range: "Waitlist!A:C",
+    range: "Waitlist!A:E",
   });
   const rows = res.data.values || [];
 
@@ -30,12 +30,15 @@ exports.handler = async () => {
 
     const email = (rows[i][1] || "").trim();
     const emailSent = (rows[i][2] || "").trim();
+    const source = (rows[i][4] || "").trim();
 
     if (!email || emailSent || seen.has(email.toLowerCase())) continue;
     seen.add(email.toLowerCase());
 
+    const template = source ? earlierInterest : thankYou;
+
     try {
-      await sendEmail({ to: email, ...thankYou });
+      await sendEmail({ to: email, ...template });
       await sheets.spreadsheets.values.update({
         spreadsheetId: sheetId,
         range: `Waitlist!C${i + 1}`,

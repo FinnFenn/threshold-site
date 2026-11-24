@@ -47,4 +47,28 @@ const launch = {
   ),
 };
 
-module.exports = { FROM, REPLY_TO, thankYou, launch };
+const EARLIER_FOOTER = "You registered interest in Threshold earlier this year. Reply to be removed.";
+
+const earlierInterest = {
+  subject: "Threshold",
+  text: [
+    "Earlier this year you registered interest in Threshold. We have been quiet while we built it.",
+    "",
+    "Expedition I begins on 29 December. Fifteen people, one month, in a secluded sanctuary, just north of London. No fees, no equity.",
+    "",
+    "Applications open on 30 November. You will be among the first to receive the link.",
+    "",
+    "Threshold",
+    "",
+    EARLIER_FOOTER,
+  ].join("\n"),
+  html: wrap(
+    `<p>Earlier this year you registered interest in Threshold. We have been quiet while we built it.</p>
+<p>Expedition I begins on 29 December. Fifteen people, one month, in a secluded sanctuary, just north of London. No fees, no equity.</p>
+<p>Applications open on 30 November. You will be among the first to receive the link.</p>
+<p>Threshold</p>`,
+    EARLIER_FOOTER
+  ),
+};
+
+module.exports = { FROM, REPLY_TO, thankYou, earlierInterest, launch };

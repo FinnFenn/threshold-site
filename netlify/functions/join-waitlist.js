@@ -56,10 +56,10 @@ exports.handler = async (event) => {
     // Append row
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: "Waitlist!A:C",
+      range: "Waitlist!A:E",
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[timestamp(), email, ""]],
+        values: [[timestamp(), email, "", "", ""]],
       },
     });
 
