@@ -291,6 +291,13 @@
   confirmImg.width = pick.width;
   confirmImg.height = pick.height;
 
+  // Start decoding now so it's ready before the user submits
+  var imgReady = confirmImg.decode().then(function() {
+    return true;
+  }).catch(function() {
+    return true;
+  });
+
   function getVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
   function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 
@@ -303,10 +310,8 @@
     waitlistNote.style.display = 'none';
     document.querySelector('.home-nav').style.display = 'none';
     confirmView.classList.add('visible');
-    // Fade in after decode so it never pops in half-drawn
-    confirmImg.decode().then(function() {
-      confirmImg.style.opacity = '0.85';
-    }).catch(function() {
+    // Image should already be decoded; fade in instantly
+    imgReady.then(function() {
       confirmImg.style.opacity = '0.85';
     });
   }
