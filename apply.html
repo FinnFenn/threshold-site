@@ -7,6 +7,10 @@
 <meta name="description" content="Join the waitlist for Threshold's Expedition I.">
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" type="image/webp" href="/confirm-1.webp">
+<link rel="preload" as="image" type="image/webp" href="/confirm-2.webp">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/cormorant-garamond-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/ibm-plex-mono-400.woff2">
 <style>
 /* ─── Nav ─── */
 .home-nav {
@@ -158,8 +162,8 @@
 .confirm-painting {
   max-width: 400px;
   width: 100%;
+  height: auto;
   margin-bottom: 2.5rem;
-  opacity: 0.85;
 }
 
 .confirm-quote {
@@ -253,7 +257,10 @@
   <p class="apply-note" id="waitlistNote">We'll email you when applications open.</p>
 
   <div class="apply-confirm" id="confirmView">
-    <img src="" alt="" class="confirm-painting" id="confirmImg">
+    <picture>
+      <source id="confirmSource" type="image/webp" srcset="">
+      <img src="" alt="" class="confirm-painting" id="confirmImg" style="opacity:0;transition:opacity 400ms ease;">
+    </picture>
     <p class="confirm-quote" id="confirmQuote"></p>
     <p class="confirm-attr" id="confirmAttr"></p>
     <a href="/" class="confirm-link">Return to Threshold</a>
@@ -268,19 +275,26 @@
   var response = document.getElementById('response');
   var confirmView = document.getElementById('confirmView');
   var waitlistNote = document.getElementById('waitlistNote');
+  var confirmImg = document.getElementById('confirmImg');
+  var confirmSource = document.getElementById('confirmSource');
 
   var confirmations = [
-    { src: '/confirm-1.jpg', alt: 'Shackleton expedition, Union Jack at the South Pole', quote: '\u201CCome, my friends, \u2019tis not too late to seek a newer world.\u201D', attr: 'Tennyson, Ulysses (1842)' },
-    { src: '/confirm-2.jpg', alt: 'Shackleton crew waving from Elephant Island', quote: '\u201CCome, my friends, \u2019tis not too late to seek a newer world.\u201D', attr: 'Tennyson, Ulysses (1842)' }
+    { webp: '/confirm-1.webp', jpg: '/confirm-1.jpg', alt: 'Shackleton expedition, Union Jack at the South Pole', width: 1200, height: 901, quote: '\u201CCome, my friends, \u2019tis not too late to seek a newer world.\u201D', attr: 'Tennyson, Ulysses (1842)' },
+    { webp: '/confirm-2.webp', jpg: '/confirm-2.jpg', alt: 'Shackleton crew waving from Elephant Island', width: 1200, height: 1189, quote: '\u201CCome, my friends, \u2019tis not too late to seek a newer world.\u201D', attr: 'Tennyson, Ulysses (1842)' }
   ];
+
+  // Pick immediately so the browser starts downloading in the background
+  var pick = confirmations[Math.floor(Math.random() * confirmations.length)];
+  confirmSource.srcset = pick.webp;
+  confirmImg.src = pick.jpg;
+  confirmImg.alt = pick.alt;
+  confirmImg.width = pick.width;
+  confirmImg.height = pick.height;
 
   function getVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
   function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 
   function showConfirm() {
-    var pick = confirmations[Math.floor(Math.random() * confirmations.length)];
-    document.getElementById('confirmImg').src = pick.src;
-    document.getElementById('confirmImg').alt = pick.alt;
     var q = document.getElementById('confirmQuote');
     var a = document.getElementById('confirmAttr');
     if (pick.quote) { q.textContent = pick.quote; } else { q.style.display = 'none'; }
@@ -289,6 +303,12 @@
     waitlistNote.style.display = 'none';
     document.querySelector('.home-nav').style.display = 'none';
     confirmView.classList.add('visible');
+    // Fade in after decode so it never pops in half-drawn
+    confirmImg.decode().then(function() {
+      confirmImg.style.opacity = '0.85';
+    }).catch(function() {
+      confirmImg.style.opacity = '0.85';
+    });
   }
 
   function validate() {
